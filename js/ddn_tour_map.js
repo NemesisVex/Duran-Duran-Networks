@@ -66,9 +66,9 @@ $(document).ready(function () {
     $('#mycarousel').jcarousel({
 		visible: 3
     });
-	$('#tour_dates').jScrollPane({
-		scrollbarWidth: 15
-	});
+//	$('#tour_dates').jScrollPane({
+//		scrollbarWidth: 15
+//	});
 });
 
 $(document).unload(function() {
