@@ -1,0 +1,36 @@
+ErrorDocument 401 /ci.php/ddn/error/401/
+ErrorDocument 403 /ci.php/ddn/error/403/
+ErrorDocument 404 /ci.php/ddn/error/404/
+ErrorDocument 500 /ci.php/ddn/error/500/
+
+AddType image/x-icon .ico
+AddType audio/x-mpeg .mp3
+AddType video/mp4 .mp4
+
+Redirect 410 /includes/skins/buy/
+
+SetEnvIf HOST dev.duran-duran.net dev
+SetEnvIf HOST test.duran-duran.net test
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "Duran Duran Networks development site"
+require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
