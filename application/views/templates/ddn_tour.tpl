@@ -1,11 +1,11 @@
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={$config.google_map_key}" type="text/javascript"></script>
-<script src="/includes/ddn_tour_map.js" type="text/javascript"></script>
+<script src="/js/ddn_tour_map.js" type="text/javascript"></script>
 
 {if $rsTours}
 <div class="span-22 append-bottom">
 <ul id="mycarousel" class="jcarousel-skin-ddn span-22 append-bottom">
 {foreach item=rsTour from=$rsTours}
-	<li> <a href="/index.php/tour/index/{$rsTour->tour_id}/">{$rsTour->tour_name}</a><br/>({$rsTour->date_start|date_format:"%b %Y"}-{$rsTour->date_end|date_format:"%b %Y"})</li>
+	<li> <a href="/ci.php/tour/index/{$rsTour->tour_id}/">{$rsTour->tour_name}</a><br/>({$rsTour->date_start|date_format:"%b %Y"}-{$rsTour->date_end|date_format:"%b %Y"})</li>
 {/foreach}
 </ul>
 </div>
