@@ -36,7 +36,7 @@ Last.fm URL: <tt><a href="{$lastfm_album->url}">{$lastfm_album->url}</a></tt><br
 
 <ul>
 {foreach item=release from=$mb_release_list->release}
-<li> <a href="/index.php/album/musicbrainz/{$album_artist_id}/{$release.id}/">{$release->title}</a> (No. of tracks: {$release->$track_list.offset+1})</li>
+<li> <a href="/album/musicbrainz/{$album_artist_id}/{$release.id}/">{$release->title}</a> (No. of tracks: {$release->$track_list.offset+1})</li>
 {/foreach}
 </ul>
 
@@ -47,7 +47,7 @@ Last.fm URL: <tt><a href="{$lastfm_album->url}">{$lastfm_album->url}</a></tt><br
 
 <ul>
 {foreach item=rsDiscog from=$rsDiscogs}
-<li> <a href="/index.php/album/discogs/{$album_artist_id}/{$rsDiscog->xpath_results[0].id}/">{$rsDiscog->xpath_results[0]->title}</a>: {$rsDiscog->xpath_results[0]->label}, {$rsDiscog->xpath_results[0]->format}</li>
+<li> <a href="/album/discogs/{$album_artist_id}/{$rsDiscog->xpath_results[0].id}/">{$rsDiscog->xpath_results[0]->title}</a>: {$rsDiscog->xpath_results[0]->label}, {$rsDiscog->xpath_results[0]->format}</li>
 {/foreach}
 </ul>
 {/if}

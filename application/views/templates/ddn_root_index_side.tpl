@@ -1,9 +1,9 @@
 <h3>Features</h3>
 
 <ul>
-	<li><a href="/index.php/tour/">Tour History Map</a></li>
+	<li><a href="/tour/">Tour History Map</a></li>
 {if $smarty.const.ENVIRONMENT!='production'}
-	<li><a href="/index.php/album/">Social Network Discography</a></li>
+	<li><a href="/album/">Social Network Discography</a></li>
 {/if}
 </ul>
 
