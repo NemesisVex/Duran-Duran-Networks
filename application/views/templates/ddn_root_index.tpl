@@ -11,7 +11,7 @@
 {parse_line_breaks txt=$rsNews->entry_text_more}
 {/if}
 
-<p><span class="attribution"><em>-- Posted: <a href="/index.php/news/entry/{$rsNews->entry_id}/">{$rsNews->entry_created_on|date_format:"%Y-%m-%d %H:%M:%S"}</a></em></span></p>
+<p><span class="attribution"><em>-- Posted: <a href="//news/entry/{$rsNews->entry_id}/">{$rsNews->entry_created_on|date_format:"%Y-%m-%d %H:%M:%S"}</a></em></span></p>
 {/if}
 {/foreach}
 

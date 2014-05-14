@@ -5,7 +5,7 @@
 <div class="span-22 append-bottom">
 <ul id="mycarousel" class="jcarousel-skin-ddn span-22 append-bottom">
 {foreach item=rsTour from=$rsTours}
-	<li> <a href="/ci.php/tour/index/{$rsTour->tour_id}/">{$rsTour->tour_name}</a><br/>({$rsTour->date_start|date_format:"%b %Y"}-{$rsTour->date_end|date_format:"%b %Y"})</li>
+	<li> <a href="/tour/index/{$rsTour->tour_id}/">{$rsTour->tour_name}</a><br/>({$rsTour->date_start|date_format:"%b %Y"}-{$rsTour->date_end|date_format:"%b %Y"})</li>
 {/foreach}
 </ul>
 </div>
