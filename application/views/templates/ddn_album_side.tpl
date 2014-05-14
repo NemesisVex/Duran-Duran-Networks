@@ -5,7 +5,7 @@
 <ul>
 {foreach item=rsFormat from=$rsFormats}
 {assign var=album_format_mask value=$rsFormat->album_format_mask}
-<li> <a href="/index.php/album/browse/{$album_artist_id}/{$album_format_mask}/">{$config.album_format_mask.$album_format_mask|capitalize}s</a></li>
+<li> <a href="/album/browse/{$album_artist_id}/{$album_format_mask}/">{$config.album_format_mask.$album_format_mask|capitalize}s</a></li>
 {/foreach}
 </ul>
 
@@ -13,7 +13,7 @@
 
 <ul>
 {foreach item=rsProject from=$rsProjects}
-<li> <a href="/index.php/album/browse/{$rsProject->artist_id}/">{format_artist_name_object obj=$rsProject}</a></li>
+<li> <a href="/album/browse/{$rsProject->artist_id}/">{format_artist_name_object obj=$rsProject}</a></li>
 {/foreach}
 </ul>
 

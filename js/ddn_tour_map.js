@@ -44,7 +44,7 @@ function create_dom_listener(element, marker, html)
 function get_tour_info(date_id, marker, element)
 {
 	var msg;
-	var url = '/ci.php/tour/marker/' + date_id + '/';
+	var url = '/tour/marker/' + date_id + '/';
 	//alert(url);
 
 	$.ajax(
