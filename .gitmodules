@@ -1,0 +1,3 @@
+[submodule "wp"]
+	path = wp
+	url = git@bitbucket.org:NemesisVex/duran-duran-networks-wordpress.git
