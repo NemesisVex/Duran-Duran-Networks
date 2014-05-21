@@ -1,0 +1,52 @@
+#<IfModule mod_rewrite.c>
+#    <IfModule mod_negotiation.c>
+#        Options -MultiViews
+#    </IfModule>
+#
+#    RewriteEngine On
+#
+    # Redirect Trailing Slashes...
+#    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteRule ^ index.php [L]
+#</IfModule>
+
+AddType image/x-icon .ico
+AddType audio/x-mpeg .mp3
+AddType video/mp4 .mp4
+
+Redirect 410 /includes/skins/buy/
+
+SetEnvIf HOST dev.duran-duran.net dev
+SetEnvIf HOST test.duran-duran.net test
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "Duran Duran Networks development site"
+require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+   <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^(tour|album)(|\/) /lv.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
