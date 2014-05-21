@@ -1,7 +1,18 @@
-ErrorDocument 401 /ci.php/ddn/error/401/
-ErrorDocument 403 /ci.php/ddn/error/403/
-ErrorDocument 404 /ci.php/ddn/error/404/
-ErrorDocument 500 /ci.php/ddn/error/500/
+#<IfModule mod_rewrite.c>
+#    <IfModule mod_negotiation.c>
+#        Options -MultiViews
+#    </IfModule>
+#
+#    RewriteEngine On
+#
+    # Redirect Trailing Slashes...
+#    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteRule ^ index.php [L]
+#</IfModule>
 
 AddType image/x-icon .ico
 AddType audio/x-mpeg .mp3
@@ -25,6 +36,10 @@ Satisfy any
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
+   <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
