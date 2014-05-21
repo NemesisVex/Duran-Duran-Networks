@@ -28,7 +28,7 @@ Satisfy any
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
-RewriteRule ^(tour|album)(|\/) /ci.php [L]
+RewriteRule ^(tour|album)(|\/) /lv.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
