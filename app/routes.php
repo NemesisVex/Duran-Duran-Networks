@@ -16,4 +16,5 @@ Route::get('/', function()
 	return View::make('index');
 });
 Route::get('/tour/{id?}', 'TourController@index');
+Route::any('/tour/marker/{id?}', 'TourController@marker');
 Route::get('/album', 'AlbumController@index');

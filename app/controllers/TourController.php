@@ -8,6 +8,7 @@
 class TourController extends BaseController  {
 	
 	private $layout_variables = array();
+	private $google_map_key = 'ABQIAAAAenOcDWY3GB5qVSPOQiBt_xRPto5laNqVxgk7rNaULMnh65830hSw2SmWLSmHjjpbku0UcRlTK_fhGQ';
 	
 	public function __construct() {
 		global $config_url_base;
@@ -25,17 +26,25 @@ class TourController extends BaseController  {
 		
 		$tour = Tours::find($id);
 		
-		foreach ($tour->dates as $tour_date) {
-			$tour_date->date_tour_date_formatted = date('Y-m-d', strtotime($tour_date->date_tour_date));
-		}
+		$center_point = $tour->dates->first();
 		
 		$page_variables = array(
 			'tours' => $tours,
 			'tour' => $tour,
+			'google_map_key' => $this->google_map_key,
 		);
 		
 		$data = array_merge($page_variables, $this->layout_variables);
 		return View::make('tour.index', $data);
 	}
 	
+	public function marker($id) {
+		$tour_date = TourDates::find($id);
+		
+		$data = array(
+			'tour_date' => $tour_date,
+		);
+		
+		return View::make('tour.marker', $data);
+	}
 }
