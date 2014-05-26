@@ -23,37 +23,35 @@
 @endif
 
 <div class="row">
-	<div class="col-md-12">
-		<div id="map_canvas"></div>
-	</div>
-</div>
-
-<div class="row">
 	<div class="col-md-6">
 
 		@if (!empty($tour))
 		<h2>{{ $tour->tour_name }}</h2>
 
 		<div id="tour_dates">
-			<p>
+			<ul class="list-unstyled">
 				@foreach ($tour->dates as $tour_date)
-				<script type="text/javascript">
-				$(document).ready(function () {
-					point = new GLatLng({{ $tour_date->geocode->geocode_lat }}, {{ $tour_date->geocode->geocode_lon }});
-					create_marker(point, {{ $tour_date->date_id }}, $('#point_{{ $tour_date->date_id }}')[0]);
-				});
-				</script>
-				<strong>{{ date('M d, Y', strtotime($tour_date->date_tour_date)) }}</strong>:
-				<a href="javascript:" id="point_{{ $tour_date->date_id }}">{{ $tour_date->geocode->geocode_location }}</a>,
-				{{ $tour_date->geocode->geocode_city }}@if (!empty($tour_date->geocode->geocode_state)), {{ $tour_date->geocode->geocode_state }}@endif, {{ $tour_date->geocode->country->country_name }}<br/>
+				<li>
+					<script type="text/javascript">
+					$(document).ready(function () {
+						point = new GLatLng({{ $tour_date->geocode->geocode_lat }}, {{ $tour_date->geocode->geocode_lon }});
+						create_marker(point, {{ $tour_date->date_id }}, $('#point_{{ $tour_date->date_id }}')[0]);
+					});
+					</script>
+					<strong>{{ date('M d, Y', strtotime($tour_date->date_tour_date)) }}</strong>:
+					<a href="javascript:" id="point_{{ $tour_date->date_id }}">{{ $tour_date->geocode->geocode_location }}</a>,
+					{{ $tour_date->geocode->geocode_city }}@if (!empty($tour_date->geocode->geocode_state)), {{ $tour_date->geocode->geocode_state }}@endif, {{ $tour_date->geocode->country->country_name }}<br/>
+				</li>
 			@endforeach
-			</p>
+			</ul>
 		</div>
 
 		@endif
 
 	</div>
 	<div class="col-md-6">
+		<div id="map_canvas"></div>
+		
 		<h3>Notes</h3>
 
 		<ul>
