@@ -15,6 +15,16 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
+Route::get('/album', 'AlbumController@index');
+
+// Tours
+Route::model('tour', 'Tours');
 Route::get('/tour/{id?}', 'TourController@index');
 Route::any('/tour/marker/{id?}', 'TourController@marker');
-Route::get('/album', 'AlbumController@index');
+Route::resource('tour', 'TourController');
+Route::get( '/tour/{tour}/delete', array( 'as' => 'tour.delete', 'before' => 'auth', 'uses' => 'TourController@delete' ) );
+
+// Authentication
+Route::get( '/login', array( 'as' => 'auth.login', 'uses' => 'AuthController@login') );
+Route::get( '/logout', array( 'as' => 'auth.logout', 'uses' => 'AuthController@sign_out' ) );
+Route::post( '/signin', array( 'as' => 'auth.signin', 'uses' => 'AuthController@sign_in' ) );
