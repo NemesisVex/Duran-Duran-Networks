@@ -5,7 +5,7 @@
  *
  * @author Greg Bueno
  */
-class TourCountries extends Eloquent {
+class TourCountry extends Eloquent {
 
 	protected $table = 'vm_countries';
 	protected $primaryKey = 'country_id';

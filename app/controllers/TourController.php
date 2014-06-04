@@ -9,9 +9,29 @@ class TourController extends \BaseController {
 		global $config_url_base;
 
 		$this->layout_variables = array(
-			'copyright_year' => date('Y'),
 			'config_url_base' => $config_url_base,
 		);
+
+		$this->beforeFilter( 'auth', array( 'except' => array( 'map' ) ) );
+
+		$this->beforeFilter( 'csrf', array( 'only' => array( 'store', 'update', 'destroy' ) ) );
+	}
+
+	public function map($id = null) {
+		if ($id == null) {
+			$id = Tour::find(1);
+		}
+
+		$tours = Tour::all();
+
+		$page_variables = array(
+			'tours' => $tours,
+			'tour' => $id,
+			'google_map_key' => $this->google_map_key,
+		);
+
+		$data = array_merge($page_variables, $this->layout_variables);
+		return View::make('tour.map', $data);
 	}
 
 	/**
@@ -21,7 +41,14 @@ class TourController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$tours = Tour::all();
+
+		$page_variables = array(
+			'tours' => $tours,
+		);
+
+		$data = array_merge($page_variables, $this->layout_variables);
+		return View::make('tour.index', $data);
 	}
 
 
@@ -32,7 +59,14 @@ class TourController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$tour = new Tour;
+
+		$page_variables = array(
+			'tour' => $tour,
+		);
+
+		$data = array_merge($page_variables, $this->layout_variables);
+		return View::make('tour.create', $data);
 	}
 
 
@@ -43,7 +77,21 @@ class TourController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$id = new Tour;
+
+		$fields = $id->getFillable();
+
+		foreach ($fields as $field) {
+			$id->{$field} = Input::get($field);
+		}
+
+		$result = $id->save();
+
+		if ($result !== false) {
+			return Redirect::route('admin.tour.show', array('id' => $id->tour_id))->with('message', 'Your changes were saved.');
+		} else {
+			return Redirect::route('admin.tour.index')->with('error', 'Your changes were not saved.');
+		}
 	}
 
 
@@ -55,21 +103,12 @@ class TourController extends \BaseController {
 	 */
 	public function show($id)
 	{
-
-		$tours = Tours::all();
-
-		$tour = Tours::find($id);
-
-		$center_point = $tour->dates->first();
-
 		$page_variables = array(
-			'tours' => $tours,
-			'tour' => $tour,
-			'google_map_key' => $this->google_map_key,
+			'tour' => $id,
 		);
 
 		$data = array_merge($page_variables, $this->layout_variables);
-		return View::make('tour.index', $data);
+		return View::make('tour.show', $data);
 	}
 
 
@@ -81,7 +120,12 @@ class TourController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$page_variables = array(
+			'tour' => $id,
+		);
+
+		$data = array_merge($page_variables, $this->layout_variables);
+		return View::make('tour.edit', $data);
 	}
 
 
@@ -93,9 +137,32 @@ class TourController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$fields = $id->getFillable();
+
+		foreach ($fields as $field) {
+			$id->{$field} = Input::get($field);
+		}
+
+		$result = $id->save();
+
+		if ($result !== false) {
+			return Redirect::route('admin.tour.show', array('id' => $id->tour_id))->with('message', 'Your changes were saved.');
+		} else {
+			return Redirect::route('admin.tour.index')->with('error', 'Your changes were not saved.');
+		}
 	}
 
+
+	public function delete($id) {
+
+		$method_variables = array(
+			'tour' => $id,
+		);
+
+		$data = array_merge($method_variables, $this->layout_variables);
+
+		return View::make('tour.delete', $data);
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -105,7 +172,16 @@ class TourController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$confirm = (boolean) Input::get('confirm');
+		$tour_name = $id->tour_name;
+
+		if ($confirm === true) {
+			// Remove tour.
+			$id->delete();
+			return Redirect::route('admin.tour.index')->with('message', $tour_name . ' was deleted.');
+		} else {
+			return Redirect::route('admin.tour.show', array('id' => $id->tour_id))->with('error', $tour_name . ' was not deleted.');
+		}
 	}
 
 

@@ -21,6 +21,7 @@ class AuthController extends BaseController {
 	public function login() {
 
 		if (Auth::check() === true) {
+			die();
 			return Redirect::intended('/');
 		}
 

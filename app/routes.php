@@ -18,11 +18,24 @@ Route::get('/', function()
 Route::get('/album', 'AlbumController@index');
 
 // Tours
-Route::model('tour', 'Tours');
-Route::get('/tour/{id?}', 'TourController@index');
-Route::any('/tour/marker/{id?}', 'TourController@marker');
-Route::resource('tour', 'TourController');
-Route::get( '/tour/{tour}/delete', array( 'as' => 'tour.delete', 'before' => 'auth', 'uses' => 'TourController@delete' ) );
+Route::model('tour', 'Tour');
+Route::model('tour_date', 'TourDate');
+Route::model('tour_geocode', 'TourGeocode');
+Route::get( '/tour', array( 'as' => 'tour.home', 'uses' => 'TourController@map' ));
+Route::get( '/tour/{tour?}', array( 'as' => 'tour.map', 'uses' => 'TourController@map' ));
+Route::any( '/tour/marker/{id?}', array( 'as' => 'tour.marker', 'uses' => 'TourController@marker' ) );
+Route::group( array( 'prefix' => 'admin' ), function () {
+	Route::get( '/', array( 'as' => 'admin.home', 'uses' => 'HomeController@admin' ) );
+
+	Route::get( '/tour/{tour}/delete', array( 'as' => 'admin.tour.delete', 'before' => 'auth', 'uses' => 'TourController@delete' ) );
+	Route::resource('tour', 'TourController');
+
+	Route::get( '/tour-date/{tour_date}/delete', array( 'as' => 'admin.tour-date.delete', 'before' => 'auth', 'uses' => 'TourDateController@delete' ) );
+	Route::resource('tour-date', 'TourDateController');
+
+	Route::get( '/tour-geocode/{tour_geocode}/delete', array( 'as' => 'admin.tour-geocode.delete', 'before' => 'auth', 'uses' => 'TourGeocodeController@delete' ) );
+	Route::resource('tour-geocode', 'TourGeocodeController');
+} );
 
 // Authentication
 Route::get( '/login', array( 'as' => 'auth.login', 'uses' => 'AuthController@login') );

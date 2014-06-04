@@ -2,9 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Duran Duran Networks
-			@if (!empty($page_title))
-			: {{ $page_title }}
-			@endif
+			@yield('page_title')
 		</title>
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -31,37 +29,54 @@
 					<h1 id="title"><a href="/">Duran Duran Networks</a></h1>
 					<h2>Duran Duran on the Web 2.0</h2>
 				</div>
+
+				<div class="collapse navbar-collapse" id="main-nav">
+					<ul class="nav navbar-nav">
+						<li><a href="{{ route('admin.home') }}">Home</a></li>
+						@if ( Auth::check() )
+						<li><a href="{{ route('auth.logout') }}">Logout</a></li>
+						@else
+						<li><a href="{{ route('auth.login') }}">Login</a></li>
+						@endif
+					</ul>
+				</div>
 			</div>
 			
 			<div id="content" class="row">
 
-				@if (!empty($section_head))
-				<h1 class="section-head">{$section_head}</h1>
-				
-					@if (!empty($section_label))
-				<h2 class="section-label">{$section_label}</h2>
-					@endif
-				
-				@endif
+				<div class="col-md-12">
+					@yield('section_head')
 
-				@if (!empty($content_side_template))
-				<div id="frame-1" class="col-md-8">
-				@else
-				<div id="frame-1" class="col-md-12">
-				@endif
-				
+					@yield('section_label')
+
+					@yield('section_sublabel')
+
+					@if ( Session::get('message') != '' )
+					<div class="alert alert-success">
+						{{ Session::get('message') }}
+					</div>
+					@endif
+
+					@if ( Session::get('error') != '' )
+					<div class="alert alert-danger">
+						{{ Session::get('error') }}
+					</div>
+					@endif
+
+				</div>
+
+
 				@yield('content')
 
-				@if (!empty($content_side_template))
-				</div>
-
-				<div id="frame-2" class="col-md-4">
-					@yield('sidebar')
-				</div>
-				@endif
-
+				@yield('sidebar')
 			</div>
 		</div>
+
+		<footer class="row">
+			<div class="col-md-12">
+				@if ( Auth::check()
+			</div>
+		</footer>
 
 		<script type="text/javascript">
 			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

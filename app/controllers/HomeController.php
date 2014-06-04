@@ -15,9 +15,18 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	public function __construct() {
+		$this->beforeFilter( 'auth', array( 'only' => 'admin' ) );
+	}
+
 	public function showWelcome()
 	{
 		return View::make('hello');
 	}
+
+	public function admin() {
+		return View::make('admin');
+	}
+
 
 }
