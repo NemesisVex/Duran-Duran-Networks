@@ -34,6 +34,7 @@ Route::group( array( 'prefix' => 'admin' ), function () {
 	Route::resource('tour-date', 'TourDateController');
 
 	Route::get( '/tour-geocode/{tour_geocode}/delete', array( 'as' => 'admin.tour-geocode.delete', 'before' => 'auth', 'uses' => 'TourGeocodeController@delete' ) );
+	Route::post( '/tour-geocode/lookup-location', array( 'as' => 'admin.tour-geocode.lookup', 'before' => 'auth|csrf', 'uses' => 'TourGeocodeController@lookup' ) );
 	Route::resource('tour-geocode', 'TourGeocodeController');
 } );
 

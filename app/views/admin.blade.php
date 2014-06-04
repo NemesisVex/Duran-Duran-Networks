@@ -20,6 +20,7 @@
 <div class="col-md-12">
 	<ul>
 		<li><a href="{{ route( 'admin.tour.index' ) }}">Tour map history</a></li>
+		<li><a href="{{ route( 'admin.tour-geocode.index' ) }}">Tour map locations</a></li>
 	</ul>
 </div>
 

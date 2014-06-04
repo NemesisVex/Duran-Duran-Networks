@@ -35,7 +35,7 @@
 	<h3>Dates</h3>
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour-date.create' ) }}"><span class="glyphicon glyphicon-plus"></span> Add a date</a></li>
+		<li><a href="{{ route( 'admin.tour-date.create', array( 'tour' => $tour->tour_id ) ) }}"><span class="glyphicon glyphicon-plus"></span> Add a date</a></li>
 	</ul>
 
 	@if (count($tour->dates) > 0)
