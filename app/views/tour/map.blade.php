@@ -6,15 +6,6 @@
 
 @section('content')
 <div class="col-md-12">
-	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={{ $google_map_key }}" type="text/javascript"></script>
-	<script src="/js/ddn_tour_map.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function () {
-			var center_point = new GLatLng( {{ $tour->dates->first()->geocode->geocode_lat }}, {{ $tour->dates->first()->geocode->geocode_lon }});
-		set_center(center_point);
-		});
-	</script>
-
 	@if (!empty($tours))
 	<div id="nav-tour" class="row">
 		<nav class="col-md-12">
@@ -37,12 +28,6 @@
 				<ul class="list-unstyled">
 					@foreach ($tour->dates as $tour_date)
 					<li>
-						<script type="text/javascript">
-							$(document).ready(function () {
-								point = new GLatLng({{ $tour_date->geocode->geocode_lat }}, {{ $tour_date->geocode->geocode_lon }});
-							create_marker(point, {{ $tour_date->date_id }}, $('#point_{{ $tour_date->date_id }}')[0]);
-							});
-						</script>
 						<strong>{{ date('M d, Y', strtotime($tour_date->date_tour_date)) }}</strong>:
 						<a href="javascript:" id="point_{{ $tour_date->date_id }}">{{ $tour_date->geocode->geocode_location }}</a>,
 						{{ $tour_date->geocode->geocode_city }}@if (!empty($tour_date->geocode->geocode_state)), {{ $tour_date->geocode->geocode_state }}@endif, {{ $tour_date->geocode->country->country_name }}<br/>
@@ -55,7 +40,7 @@
 
 		</div>
 		<div class="col-md-6">
-			<div id="map_canvas"></div>
+			<div id="map-canvas">Map goes here</div>
 		</div>
 	</div>
 
@@ -74,5 +59,37 @@
 	</div>
 </div>
 
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_V3_CLIENT_KEY }}" type="text/javascript"></script>
+<script type="text/javascript">
+	(function ($) {
+		var dates = {{$dates}};
+
+		var center = new google.maps.LatLng(dates[0].geocode.geocode_lat, dates[0].geocode.geocode_lon);
+		var mapOptions = {
+			zoom: 6,
+			center: center
+		}
+		var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+		for (var d = 0; d < dates.length; d++) {
+			var point_cache = new google.maps.LatLng(dates[d].geocode.geocode_lat, dates[d].geocode.geocode_lon);
+			var map_marker = new google.maps.Marker({
+				position: point_cache,
+				map: map
+			});
+			var infowindow = new google.maps.InfoWindow({
+				content: dates[d].infowindow_content
+			});
+			google.maps.event.addListener(map_marker, 'click', function (event) {
+				infowindow.setPosition(event.latLng);
+				infowindow.open(map);
+			});
+		}
+
+		$('#mycarousel').jcarousel({
+			visible: 3
+		});
+	})(jQuery);
+</script>
 
 @stop

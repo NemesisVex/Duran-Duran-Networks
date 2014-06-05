@@ -27,7 +27,7 @@
 
 @section('sidebar')
 <div class="col-md-4">
-
+@parent
 </div>
 @stop
 
