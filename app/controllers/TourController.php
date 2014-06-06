@@ -12,7 +12,7 @@ class TourController extends \BaseController {
 			'config_url_base' => $config_url_base,
 		);
 
-		$this->beforeFilter( 'auth', array( 'except' => array( 'map' ) ) );
+		$this->beforeFilter( 'auth', array( 'except' => array( 'map', 'marker' ) ) );
 
 		$this->beforeFilter( 'csrf', array( 'only' => array( 'store', 'update', 'destroy' ) ) );
 	}
