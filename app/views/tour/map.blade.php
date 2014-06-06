@@ -69,22 +69,44 @@
 			zoom: 6,
 			center: center
 		}
-		var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions), map_marker, infowindow, point_cache, content_cache, infowindow_callback;
+		infowindow = new google.maps.InfoWindow();
 
 		for (var d = 0; d < dates.length; d++) {
-			var point_cache = new google.maps.LatLng(dates[d].geocode.geocode_lat, dates[d].geocode.geocode_lon);
-			var map_marker = new google.maps.Marker({
+			point_cache = new google.maps.LatLng(dates[d].geocode.geocode_lat, dates[d].geocode.geocode_lon);
+			map_marker = new google.maps.Marker({
 				position: point_cache,
 				map: map
 			});
-			var infowindow = new google.maps.InfoWindow({
-				content: dates[d].infowindow_content
-			});
+			dates[d].geocode.geocode_point = point_cache;
+			dates[d].geocode.map_marker = map_marker;
+
 			google.maps.event.addListener(map_marker, 'click', function (event) {
-				infowindow.setPosition(event.latLng);
-				infowindow.open(map);
+				var _date;
+				for (var i in dates) {
+					if (dates[i].geocode.geocode_point == event.latLng) {
+						_date = dates[i];
+						break;
+					}
+				}
+				infowindow.setContent(_date.infowindow_content);
+				infowindow.open(map, _date.geocode.map_marker);
 			});
 		}
+
+		$('a[id^=point_]').each(function () {
+			google.maps.event.addDomListener(this, 'click', function() {
+				var _date, id = this.id.split('_')[1];
+				for (var i in dates) {
+					if (dates[i].date_id == id) {
+						_date = dates[i];
+						break;
+					}
+				}
+				infowindow.setContent(_date.infowindow_content);
+				infowindow.open(map, _date.geocode.map_marker);
+			});
+		});
 
 		$('#mycarousel').jcarousel({
 			visible: 3
