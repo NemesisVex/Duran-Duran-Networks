@@ -23,10 +23,14 @@ class TourController extends \BaseController {
 		}
 
 		$tours = Tour::all();
+		foreach ($id->dates as $d => $date) {
+			$id->dates[$d]->infowindow_content = View::make( 'tour.marker', array('tour_date' => $date) )->render();
+		}
 
 		$page_variables = array(
 			'tours' => $tours,
 			'tour' => $id,
+			'dates' => $id->dates->load('geocode')->toJSON(),
 			'google_map_key' => $this->google_map_key,
 		);
 
@@ -184,5 +188,13 @@ class TourController extends \BaseController {
 		}
 	}
 
+	public function marker($id) {
+		$tour_date = TourDate::find($id);
 
+		$data = array(
+			'tour_date' => $tour_date,
+		);
+
+		return View::make('tour.marker', $data);
+	}
 }

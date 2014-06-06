@@ -62,48 +62,53 @@
 	</div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_BROWSER_APP_KEY }}" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_V3_CLIENT_KEY }}" type="text/javascript"></script>
 <script type="text/javascript">
 	(function ($) {
-		$('#geocode_country_id').chosen();
+		$(function () {
+			$('#geocode_country_id').chosen();
 
-
-
-		$('#lookup-location').click(function () {
-			var url = '{{ route("admin.tour-geocode.lookup") }}';
-			var data = {
-				'geocode_location': $('#geocode_location').val(),
-				'geocode_address': $('#geocode_address').val(),
-				'geocode_city': $('#geocode_city').val(),
-				'geocode_state': $('#geocode_state').val(),
-				'geocode_country': $('#geocode_country_id').val(),
-				'_token': $('input[name=_token]').val()
+			var latLon = new google.maps.LatLng({{ !empty($geocode->geocode_lat) ? $geocode->geocode_lat : 0 }} , {{ !empty($geocode->geocode_lon) ? $geocode->geocode_lon : 0 }});
+			var mapOptions = {
+				center: latLon,
+				zoom: 16
 			};
-			$('body').css('cursor', 'progress');
-			$.post(url, data, function(response) {
-				var map_data = $.parseJSON(response);
-				var lng = map_data.results[0].geometry.location.lng;
-				var lat = map_data.results[0].geometry.location.lat;
+			var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+			var marker = new google.maps.Marker({
+				position: latLon,
+				map: map,
+				title: '{{ $geocode->geocode_location }}'
+			});
 
-				$('#geocode_lon').val(lng);
-				$('#geocode_lat').val(lat);
-
-				var latLng = new google.maps.LatLng(lat, lng);
-				var mapOptions = {
-					center: latLng,
-					zoom: 18
+			$('#lookup-location').click(function () {
+				var url = '{{ route("admin.tour-geocode.lookup") }}';
+				var data = {
+					'geocode_location': $('#geocode_location').val(),
+					'geocode_address': $('#geocode_address').val(),
+					'geocode_city': $('#geocode_city').val(),
+					'geocode_state': $('#geocode_state').val(),
+					'geocode_country': $('#geocode_country_id').val(),
+					'_token': $('input[name=_token]').val()
 				};
-				var map = new google.maps.Map(document.getElementById("map-preview"),
-					mapOptions);
+				$('body').css('cursor', 'progress');
+				$.post(url, data, function(response) {
+					var map_data = $.parseJSON(response);
+					var lng = map_data.results[0].geometry.location.lng;
+					var lat = map_data.results[0].geometry.location.lat;
 
-				var marker = new google.maps.Marker({
-					position: latLng,
-					map: map,
-					title: $('#geocode_location').val()
+					$('#geocode_lon').val(lng);
+					$('#geocode_lat').val(lat);
+
+					var newLatLon = new google.maps.LatLng(lat, lng);
+					map.setCenter(newLatLon);
+					marker.setPosition(newLatLon);
+					marker.setTitle($('#geocode_location').val());
+
+					$('body').css('cursor', 'default');
 				});
-				$('body').css('cursor', 'default');
 			});
 		});
+
 	})(jQuery);
 </script>
 
@@ -113,7 +118,7 @@
 
 <h4>Preview</h4>
 
-<div id="map-preview" style="width: 100%; height: 300px;">
+<div id="map-canvas" style="width: 100%; height: 300px;">
 	<p>Look up coordinates to see a preview.</p>
 </div>
 

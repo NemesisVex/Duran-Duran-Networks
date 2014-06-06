@@ -211,7 +211,7 @@ class TourGeocodeController extends \BaseController {
 
 		$address = urlencode( implode(', ', $location) );
 
-		$url = $this->google_maps_api_url_base . '?address=' . $address . '&key=' . GOOGLE_BROWSER_APP_KEY;
+		$url = $this->google_maps_api_url_base . '?address=' . $address . '&key=' . GOOGLE_MAPS_API_V3_SERVER_KEY;
 
 		$client = new Client();
 		$response = $client->get($url);
