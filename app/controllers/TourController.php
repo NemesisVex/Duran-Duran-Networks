@@ -23,14 +23,20 @@ class TourController extends \BaseController {
 		}
 
 		$tours = Tour::all();
-		foreach ($id->dates as $d => $date) {
-			$id->dates[$d]->infowindow_content = View::make( 'tour.marker', array('tour_date' => $date) )->render();
+
+		$dates = array();
+		foreach ($id->dates as $date) {
+			$dates[] = (object) array(
+				'date_id' => $date->date_id,
+				'geocode_lat' => $date->geocode->geocode_lat,
+				'geocode_lon' => $date->geocode->geocode_lon,
+			);
 		}
 
 		$page_variables = array(
 			'tours' => $tours,
 			'tour' => $id,
-			'dates' => $id->dates->load('geocode')->toJSON(),
+			'dates' => json_encode($dates),
 			'google_map_key' => $this->google_map_key,
 		);
 
