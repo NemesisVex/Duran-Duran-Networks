@@ -15,6 +15,30 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
-Route::get('/tour/{id?}', 'TourController@index');
-Route::any('/tour/marker/{id?}', 'TourController@marker');
 Route::get('/album', 'AlbumController@index');
+
+// Tours
+Route::model('tour', 'Tour');
+Route::model('tour_date', 'TourDate');
+Route::model('tour_geocode', 'TourGeocode');
+Route::get( '/tour', array( 'as' => 'tour.home', 'uses' => 'TourController@map' ));
+Route::get( '/tour/{tour?}', array( 'as' => 'tour.map', 'uses' => 'TourController@map' ));
+Route::any( '/tour/marker/{id?}', array( 'as' => 'tour.marker', 'uses' => 'TourController@marker' ) );
+Route::group( array( 'prefix' => 'admin' ), function () {
+	Route::get( '/', array( 'as' => 'admin.home', 'uses' => 'HomeController@admin' ) );
+
+	Route::get( '/tour/{tour}/delete', array( 'as' => 'admin.tour.delete', 'before' => 'auth', 'uses' => 'TourController@delete' ) );
+	Route::resource('tour', 'TourController');
+
+	Route::get( '/tour-date/{tour_date}/delete', array( 'as' => 'admin.tour-date.delete', 'before' => 'auth', 'uses' => 'TourDateController@delete' ) );
+	Route::resource('tour-date', 'TourDateController');
+
+	Route::get( '/tour-geocode/{tour_geocode}/delete', array( 'as' => 'admin.tour-geocode.delete', 'before' => 'auth', 'uses' => 'TourGeocodeController@delete' ) );
+	Route::post( '/tour-geocode/lookup-location', array( 'as' => 'admin.tour-geocode.lookup', 'before' => 'auth|csrf', 'uses' => 'TourGeocodeController@lookup' ) );
+	Route::resource('tour-geocode', 'TourGeocodeController');
+} );
+
+// Authentication
+Route::get( '/login', array( 'as' => 'auth.login', 'uses' => 'AuthController@login') );
+Route::get( '/logout', array( 'as' => 'auth.logout', 'uses' => 'AuthController@sign_out' ) );
+Route::post( '/signin', array( 'as' => 'auth.signin', 'uses' => 'AuthController@sign_in' ) );
