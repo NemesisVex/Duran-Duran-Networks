@@ -56,7 +56,7 @@ class TourDateController extends Controller {
 		}
 
 		$tours = Tour::lists('tour_name', 'tour_id');
-		$tours = array(0 => '&nbsp;') + $tours;
+		$tours = array(0 => '&nbsp;') + $tours->all();
 
 		$geocodes = $this->build_location_options();
 
@@ -123,7 +123,7 @@ class TourDateController extends Controller {
 	public function edit($id)
 	{
 		$tours = Tour::lists('tour_name', 'tour_id');
-		$tours = array(0 => '&nbsp;') + $tours;
+		$tours = array(0 => '&nbsp;') + $tours->all();
 
 		$geocodes = $this->build_location_options();
 
@@ -211,7 +211,7 @@ class TourDateController extends Controller {
 			$geocode_list[$g] .= ' (' . $address . ')';
 		}
 
-		$geocode_list = array(0 => '&nbsp;') + $geocode_list;
+		$geocode_list = array(0 => '&nbsp;') + $geocode_list->toArray();
 		return $geocode_list;
 	}
 }

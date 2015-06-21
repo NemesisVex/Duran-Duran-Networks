@@ -45,7 +45,7 @@ class TourGeocodeController extends Controller {
 		$geocode = new TourGeocode;
 
 		$countries = TourCountry::orderBy('country_name')->lists('country_name', 'country_id');
-		$countries = array(0 => '&nbsp;') + $countries;
+		$countries = array(0 => '&nbsp;') + $countries->toArray();
 
 		$page_variables = array(
 			'geocode' => $geocode,
@@ -109,7 +109,7 @@ class TourGeocodeController extends Controller {
 	public function edit($id)
 	{
 		$countries = TourCountry::orderBy('country_name')->lists('country_name', 'country_id');
-		$countries = array(0 => '&nbsp;') + $countries;
+		$countries = array(0 => '&nbsp;') + $countries->toArray();
 
 		$page_variables = array(
 			'geocode' => $id,

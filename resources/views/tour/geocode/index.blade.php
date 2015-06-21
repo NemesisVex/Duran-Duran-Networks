@@ -21,7 +21,7 @@
 <div class="col-md-8">
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour-geocode.create' ) }}" class="button"><span class="glyphicon glyphicon-plus"></span> Add a location</a></li>
+		<li><a href="{{ route( 'admin.tour-geocode.create' ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add a location</a></li>
 	</ul>
 
 	@if (count($geocodes) > 0)
@@ -29,8 +29,8 @@
 		@foreach ($geocodes as $geocode)
 		<li>
 			<ul class="list-inline">
-				<li><a href="{{ route( 'admin.tour-geocode.edit', array( 'id' => $geocode->geocode_id ) ) }}"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Edit</span></a></li>
-				<li><a href="{{ route( 'admin.tour-geocode.delete', array( 'id' => $geocode->geocode_id ) ) }}"><span class="glyphicon glyphicon-remove"></span> <span class="sr-only">Remove</span></a></li>
+				<li><a href="{{ route( 'admin.tour-geocode.edit', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Edit</span></a></li>
+				<li><a href="{{ route( 'admin.tour-geocode.delete', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span> <span class="sr-only">Remove</span></a></li>
 				<li>
 					<a href="{{ route( 'admin.tour-geocode.show', array( 'id' => $geocode->geocode_id ) ) }}">{{ $geocode->geocode_location }}</a>,
 					@if (!empty( $geocode->geocode_city ))

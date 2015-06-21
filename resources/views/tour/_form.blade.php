@@ -11,7 +11,7 @@
 
 <div class="form-group">
 	<div class="col-sm-10 col-sm-offset-2">
-		{!! Form::submit( 'Save', array( 'class' => 'button' ) ) !!}
+		{!! Form::submit( 'Save', array( 'class' => 'btn btn-primary' ) ) !!}
 	</div>
 </div>
 

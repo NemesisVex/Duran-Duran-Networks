@@ -21,7 +21,7 @@
 <div class="col-md-8">
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour-date.create' ) }}" class="button"><span class="glyphicon glyphicon-plus"></span> Add a date</a></li>
+		<li><a href="{{ route( 'admin.tour-date.create' ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add a date</a></li>
 	</ul>
 
 	@if (count($dates) > 0)
@@ -29,8 +29,8 @@
 		@foreach ($dates as $date)
 		<li>
 			<ul class="list-inline">
-				<li><a href="{{ route( 'admin.tour-date.edit', array( 'id' => $date->date_id ) ) }}"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Edit</span></a></li>
-				<li><a href="{{ route( 'admin.tour-date.delete', array( 'id' => $date->date_id ) ) }}"><span class="glyphicon glyphicon-remove"></span> <span class="sr-only">Remove</span></a></li>
+				<li><a href="{{ route( 'admin.tour-date.edit', array( 'id' => $date->date_id ) ) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Edit</span></a></li>
+				<li><a href="{{ route( 'admin.tour-date.delete', array( 'id' => $date->date_id ) ) }}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span> <span class="sr-only">Remove</span></a></li>
 				<li><a href="{{ route( 'admin.tour-date.show', array( 'id' => $date->date_id ) ) }}">{{ date('Y-m-d', strtotime($date->date_tour_date)) }}: {{ $date->geocode->geocode_location }}</a></li>
 			</ul>
 		</li>

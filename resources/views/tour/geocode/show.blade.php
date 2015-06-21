@@ -27,37 +27,73 @@
 <div class="col-md-8">
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour-geocode.edit', array( 'id' => $geocode->geocode_id ) ) }}" class="button"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
-		<li><a href="{{ route( 'admin.tour-geocode.delete', array( 'id' => $geocode->geocode_id ) ) }}" class="button"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
+		<li><a href="{{ route( 'admin.tour-geocode.edit', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+		<li><a href="{{ route( 'admin.tour-geocode.delete', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
 	</ul>
 
-	<p>
-		<label>Location:</label> {{ $geocode->geocode_location }}
-	</p>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Location:</label>
+        </div>
+        <div class="col-md-10">
+            {{ $geocode->geocode_location }}
+        </div>
+    </div>
 
-	<p>
-		<label>Address:</label> {{ $geocode->geocode_address }}
-	</p>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Address:</label>
+        </div>
+        <div class="col-md-10">
+            {{ $geocode->geocode_address }}
+        </div>
+    </div>
 
-	<p>
-		<label>City:</label> {{ $geocode->geocode_city }}
-	</p>
+    <div class="row">
+        <div class="col-md-2">
+            <label>City:</label>
+        </div>
+        <div class="col-md-10">
+            {{ $geocode->geocode_city }}
+        </div>
+    </div>
 
-	<p>
-		<label>State:</label> {{ $geocode->geocode_state }}
-	</p>
+    <div class="row">
+        <div class="col-md-2">
+            <label>State/Province:</label>
+        </div>
+        <div class="col-md-10">
+            {{ $geocode->geocode_state }}
+        </div>
+    </div>
 
-	<p>
-		<label>Country:</label> {{ $geocode->country->country_name }}
-	</p>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Country:</label>
+        </div>
+        <div class="col-md-10">
+            {{ $geocode->country->country_name }}
+        </div>
+    </div>
 
-	<p>
-		<label>Longitude:</label> {{ $geocode->geocode_lon }}
-	</p>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Longitude:</label>
+        </div>
+        <div class="col-md-10">
+            {{ $geocode->geocode_lon }}
+        </div>
+    </div>
 
-	<p>
-		<label>Latitude:</label> {{ $geocode->geocode_lat }}
-	</p>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Latitude:</label>
+        </div>
+        <div class="col-md-10">
+            {{ $geocode->geocode_lat }}
+        </div>
+    </div>
+
 
 </div>
 @stop
