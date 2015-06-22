@@ -68,7 +68,7 @@
 <script type="text/javascript">
 	(function ($) {
 		// Set up our data.
-		var dates = {{$dates}};
+		var dates = {!! $dates !!};
 
 		// Center the map to the first date of the tour.
 		var center = new google.maps.LatLng(dates[0].geocode_lat, dates[0].geocode_lon);
@@ -114,7 +114,7 @@
 				// Make a request for the tour date info.
 				var url = '/tour/marker/' + _date.date_id;
 
-				$.post(url, null, function (response) {
+				$.get(url, null, function (response) {
 					// Display the tour date info in the window.
 					infowindow.setContent(response);
 					infowindow.open(map, _date.map_marker);
@@ -136,7 +136,7 @@
 			// Make a request for the tour date info.
 			var url = '/tour/marker/' + _date.date_id;
 
-			$.post(url, null, function (response) {
+			$.get(url, null, function (response) {
 				// Display the tour date info in the window.
 				infowindow.setContent(response);
 				infowindow.open(map, _date.map_marker);

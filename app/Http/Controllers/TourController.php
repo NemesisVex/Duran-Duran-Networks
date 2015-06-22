@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
+use App\Models\TourDate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;

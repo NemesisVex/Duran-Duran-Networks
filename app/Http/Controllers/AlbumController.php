@@ -5,7 +5,12 @@
  *
  * @author Greg Bueno
  */
-class AlbumController extends BaseController  {
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\View;
+
+class AlbumController extends Controller  {
 	
 	private $layout_variables = array();
 	
