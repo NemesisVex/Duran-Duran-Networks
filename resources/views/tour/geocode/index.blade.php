@@ -48,6 +48,8 @@
 		@endforeach
 	</ul>
 	@endif
+
+    {!! $geocodes->render() !!}
 </div>
 @stop
 

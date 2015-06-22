@@ -24,7 +24,7 @@ class TourGeocodeController extends Controller {
 	 */
 	public function index()
 	{
-		$geocodes = TourGeocode::orderBy('geocode_location')->get();
+		$geocodes = TourGeocode::orderBy('geocode_location')->paginate(25);
 
 		$page_variables = array(
 			'geocodes' => $geocodes,

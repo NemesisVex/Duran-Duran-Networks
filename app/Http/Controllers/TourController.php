@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
@@ -111,8 +112,13 @@ class TourController extends Controller {
 	 */
 	public function show($id)
 	{
+		$chunks = $id->dates->chunk(10);
+		$dates = $chunks[0];
+
 		$page_variables = array(
 			'tour' => $id,
+			'chunks' => $chunks,
+			'dates' => $dates,
 		);
 
 		$data = array_merge($page_variables, $this->layout_variables);

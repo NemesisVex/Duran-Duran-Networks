@@ -21,7 +21,7 @@
 <div class="col-md-8">
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour-date.create' ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add a date</a></li>
+		<li><a href="{{ route( 'admin.tour-date.create', [ 'tour' => $tour ] ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add a date</a></li>
 	</ul>
 
 	@if (count($dates) > 0)
@@ -37,6 +37,8 @@
 		@endforeach
 	</ul>
 	@endif
+
+    {!! $dates->appends( [ 'tour' => $tour ])->render() !!}
 </div>
 @stop
 

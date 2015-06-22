@@ -26,13 +26,14 @@ class TourDateController extends Controller {
 		$tour = Input::get('tour');
 
 		if (!empty($tour)) {
-			$dates = TourDate::with('tour')->where('date_tour_id', $tour)->orderBy('date_tour_date');
+			$dates = TourDate::with('tour')->where('date_tour_id', $tour)->orderBy('date_tour_date')->paginate(25);
 		} else {
-			$dates = TourDate::with('tour')->orderBy('date_tour_date')->get();
+			$dates = TourDate::with('tour')->orderBy('date_tour_date')->paginate(25);
 		}
 
 		$page_variables = array(
 			'dates' => $dates,
+			'tour' => $tour,
 		);
 
 		$data = array_merge($page_variables, $this->layout_variables);

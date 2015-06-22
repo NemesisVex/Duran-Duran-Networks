@@ -43,9 +43,9 @@
 		<li><a href="{{ route( 'admin.tour-date.create', array( 'tour' => $tour->tour_id ) ) }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add a date</a></li>
 	</ul>
 
-	@if (count($tour->dates) > 0)
+	@if (count($dates) > 0)
 	<ul class="list-unstyled">
-		@foreach ($tour->dates as $date)
+		@foreach ($dates as $date)
 		<li>
 			<ul class="list-inline">
 				<li><a href="{{ route( 'admin.tour-date.edit', array( 'id' => $date->date_id ) ) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Edit</span></a></li>
@@ -55,6 +55,12 @@
 		</li>
 		@endforeach
 	</ul>
+
+    @if ( $chunks->count() > 1 )
+        <p>
+            <a href="{!! route( 'admin.tour-date.index', [ 'tour' => $tour->tour_id ] ) !!}">List all dates</a>
+        </p>
+    @endif
 	@else
 	<p>
 		This tour has no dates yet listed.
