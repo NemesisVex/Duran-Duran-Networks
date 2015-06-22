@@ -46,7 +46,7 @@ class AuthController extends Controller {
 		if (Auth::attempt( array( 'user_name' => $user_name, 'password' => $user_password ), true )) {
 			return Redirect::intended('/');
 		} else {
-			return Redirect::to('/login')->with('error', "Sorry, we couldn't verify your credentials. Please try again.");
+			return Redirect::to('/auth/login')->with('error', "Sorry, we couldn't verify your credentials. Please try again.");
 		}
 	}
 

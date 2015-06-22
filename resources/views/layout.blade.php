@@ -35,8 +35,9 @@
 
 				<div class="collapse navbar-collapse" id="main-nav">
 					<ul class="nav navbar-nav">
-						<li><a href="{{ route('admin.home') }}">Home</a></li>
+                        <li><a href="/">Home</a></li>
 						@if ( Auth::check() )
+                        <li><a href="{{ route('admin.home') }}">Admin</a></li>
 						<li><a href="{{ route('auth.logout') }}">Logout</a></li>
 						@else
 						<li><a href="{{ route('auth.login') }}">Login</a></li>
