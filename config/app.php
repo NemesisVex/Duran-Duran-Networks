@@ -140,9 +140,9 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        DuranDuranNetworks\App\Providers\AppServiceProvider::class,
+        DuranDuranNetworks\App\Providers\EventServiceProvider::class,
+        DuranDuranNetworks\App\Providers\RouteServiceProvider::class,
 
 		Collective\Html\HtmlServiceProvider::class,
     ],

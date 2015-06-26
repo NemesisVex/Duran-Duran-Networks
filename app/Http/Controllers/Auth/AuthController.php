@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace DuranDuranNetworks\App\Http\Controllers\Auth;
 
-use App\User;
+use DuranDuranNetworks\App\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use DuranDuranNetworks\App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace DuranDuranNetworks\App\Http\Controllers;
 
-use App\Models\TourGeocode;
-use App\Models\TourCountry;
+use DuranDuranNetworks\App\Models\TourGeocode;
+use DuranDuranNetworks\App\Models\TourCountry;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;

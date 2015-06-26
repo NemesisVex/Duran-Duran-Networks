@@ -6,7 +6,7 @@
  * @author Greg Bueno
  */
 
-namespace App\Models;
+namespace DuranDuranNetworks\App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -27,12 +27,12 @@ class TourDate extends Model  {
 	
 	public function tour()
 	{
-		return $this->belongsTo('App\Models\Tour', 'date_tour_id', 'tour_id');
+		return $this->belongsTo('DuranDuranNetworks\App\Models\Tour', 'date_tour_id', 'tour_id');
 	}
 	
 	public function geocode()
 	{
-		return $this->hasOne('App\Models\TourGeocode', 'geocode_id', 'date_geocode_id');
+		return $this->hasOne('DuranDuranNetworks\App\Models\TourGeocode', 'geocode_id', 'date_geocode_id');
 	}
 
 }
