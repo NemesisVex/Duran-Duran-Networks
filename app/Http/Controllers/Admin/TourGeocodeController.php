@@ -1,7 +1,8 @@
 <?php
 
-namespace DuranDuranNetworks\App\Http\Controllers;
+namespace DuranDuranNetworks\App\Http\Controllers\Admin;
 
+use DuranDuranNetworks\App\Http\Controllers\Controller;
 use DuranDuranNetworks\App\Models\TourGeocode;
 use DuranDuranNetworks\App\Models\TourCountry;
 use Illuminate\Support\Facades\Input;
