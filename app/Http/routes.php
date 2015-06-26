@@ -18,24 +18,24 @@ Route::get('/', function()
 Route::get('/album', 'AlbumController@index');
 
 // Tours
-Route::model('tour', 'App\Models\Tour');
-Route::model('tour_date', 'App\Models\TourDate');
-Route::model('tour_geocode', 'App\Models\TourGeocode');
+Route::model('tour', 'DuranDuranNetworks\App\Models\Tour');
+Route::model('tour_date', 'DuranDuranNetworks\App\Models\TourDate');
+Route::model('tour_geocode', 'DuranDuranNetworks\App\Models\TourGeocode');
 Route::get( '/tour', array( 'as' => 'tour.home', 'uses' => 'TourController@map' ));
 Route::get( '/tour/{tour?}', array( 'as' => 'tour.map', 'uses' => 'TourController@map' ));
 Route::any( '/tour/marker/{id?}', array( 'as' => 'tour.marker', 'uses' => 'TourController@marker' ) );
 Route::group( array( 'prefix' => 'admin', 'middleware' => 'auth' ), function () {
-	Route::get( '/', array( 'as' => 'admin.home', 'uses' => 'HomeController@admin' ) );
+	Route::get( '/', array( 'as' => 'admin.home', 'uses' => 'Admin\HomeController@admin' ) );
 
-	Route::get( '/tour/{tour}/delete', array( 'as' => 'admin.tour.delete', 'uses' => 'TourController@delete' ) );
-	Route::resource('tour', 'TourController');
+	Route::get( '/tour/{tour}/delete', array( 'as' => 'admin.tour.delete', 'uses' => 'Admin\TourController@delete' ) );
+	Route::resource('tour', 'Admin\TourController');
 
-	Route::get( '/tour-date/{tour_date}/delete', array( 'as' => 'admin.tour-date.delete', 'uses' => 'TourDateController@delete' ) );
-	Route::resource('tour-date', 'TourDateController');
+	Route::get( '/tour-date/{tour_date}/delete', array( 'as' => 'admin.tour-date.delete', 'uses' => 'Admin\TourDateController@delete' ) );
+	Route::resource('tour-date', 'Admin\TourDateController');
 
-	Route::get( '/tour-geocode/{tour_geocode}/delete', array( 'as' => 'admin.tour-geocode.delete', 'uses' => 'TourGeocodeController@delete' ) );
-	Route::post( '/tour-geocode/lookup-location', array( 'as' => 'admin.tour-geocode.lookup', 'uses' => 'TourGeocodeController@lookup' ) );
-	Route::resource('tour-geocode', 'TourGeocodeController');
+	Route::get( '/tour-geocode/{tour_geocode}/delete', array( 'as' => 'admin.tour-geocode.delete', 'uses' => 'Admin\TourGeocodeController@delete' ) );
+	Route::post( '/tour-geocode/lookup-location', array( 'as' => 'admin.tour-geocode.lookup', 'uses' => 'Admin\TourGeocodeController@lookup' ) );
+	Route::resource('tour-geocode', 'Admin\TourGeocodeController');
 } );
 
 // Authentication

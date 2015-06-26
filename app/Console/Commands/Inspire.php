@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace DuranDuranNetworks\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

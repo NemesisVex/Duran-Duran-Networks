@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace DuranDuranNetworks\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
