@@ -6,7 +6,7 @@
  * @author Greg Bueno
  */
 
-namespace App\Http\Controllers;
+namespace DuranDuranNetworks\App\Http\Controllers;
 
 use Illuminate\Support\Facades\View;
 

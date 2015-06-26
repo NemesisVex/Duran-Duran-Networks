@@ -6,7 +6,7 @@
  * @author Greg Bueno
  */
 
-namespace App\Models;
+namespace DuranDuranNetworks\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +29,7 @@ class TourGeocode extends Model {
 	);
 
 	public function country() {
-		return $this->hasOne('App\Models\TourCountry', 'country_id', 'geocode_country_id');
+		return $this->hasOne('DuranDuranNetworks\App\Models\TourCountry', 'country_id', 'geocode_country_id');
 	}
 	
 }

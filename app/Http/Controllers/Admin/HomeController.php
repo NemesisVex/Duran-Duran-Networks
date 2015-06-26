@@ -1,7 +1,8 @@
 <?php
 
-namespace DuranDuranNetworks\App\Http\Controllers;
+namespace DuranDuranNetworks\App\Http\Controllers\Admin;
 
+use DuranDuranNetworks\App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller {
@@ -22,9 +23,9 @@ class HomeController extends Controller {
 	public function __construct() {
 	}
 
-	public function showWelcome()
-	{
-		return View::make('hello');
+	public function admin() {
+		return View::make('admin');
 	}
+
 
 }

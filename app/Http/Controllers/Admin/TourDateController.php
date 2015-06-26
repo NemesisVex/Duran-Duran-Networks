@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace DuranDuranNetworks\App\Http\Controllers\Admin;
 
-use App\Models\Tour;
-use App\Models\TourDate;
-use App\Models\TourGeocode;
+use DuranDuranNetworks\App\Http\Controllers\Controller;
+use DuranDuranNetworks\App\Models\Tour;
+use DuranDuranNetworks\App\Models\TourDate;
+use DuranDuranNetworks\App\Models\TourGeocode;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 
-class TourDateController extends Controller {
+class TourDateController extends Controller  {
 
 	private $layout_variables = array();
 

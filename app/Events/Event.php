@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace DuranDuranNetworks\App\Events;
 
 abstract class Event
 {
