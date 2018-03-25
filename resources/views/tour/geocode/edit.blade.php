@@ -23,7 +23,7 @@
 
 @section('content')
 <div class="col-md-8">
-	{!! Form::model( $geocode, array( 'route' => array('admin.tour-geocode.update', $geocode->geocode_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'put' ) ) !!}
+	{!! Form::model( $geocode, array( 'route' => array('tour-geocode.update', $geocode->geocode_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'put' ) ) !!}
 	@parent
 	{!! Form::close() !!}
 </div>

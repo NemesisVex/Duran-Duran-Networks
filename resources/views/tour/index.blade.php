@@ -20,7 +20,7 @@
 <div class="col-md-8">
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour.create' ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add a tour</a></li>
+		<li><a href="{{ route( 'tour.create' ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add a tour</a></li>
 	</ul>
 
 	@if (count($tours) > 0)
@@ -28,9 +28,9 @@
 		@foreach ($tours as $tour)
 		<li>
 			<ul class="list-inline">
-				<li><a href="{{ route( 'admin.tour.edit', array( 'id' => $tour->tour_id ) ) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Edit</span></a></li>
-				<li><a href="{{ route( 'admin.tour.delete', array( 'id' => $tour->tour_id ) ) }}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span> <span class="sr-only">Remove</span></a></li>
-				<li><a href="{{ route( 'admin.tour.show', array( 'id' => $tour->tour_id ) ) }}">{{ $tour->tour_name }}</a></li>
+				<li><a href="{{ route( 'tour.edit', array( 'id' => $tour->tour_id ) ) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Edit</span></a></li>
+				<li><a href="{{ route( 'tour.delete', array( 'id' => $tour->tour_id ) ) }}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span> <span class="sr-only">Remove</span></a></li>
+				<li><a href="{{ route( 'tour.show', array( 'id' => $tour->tour_id ) ) }}">{{ $tour->tour_name }}</a></li>
 			</ul>
 		</li>
 		@endforeach

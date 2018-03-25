@@ -1,9 +1,9 @@
 <?php
 
-namespace DuranDuranNetworks\App\Http\Controllers;
+namespace App\Http\Controllers;
 
-use DuranDuranNetworks\App\Models\Tour;
-use DuranDuranNetworks\App\Models\TourDate;
+use App\Models\Tour;
+use App\Models\TourDate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
@@ -36,7 +36,7 @@ class TourController extends Controller {
 			'tours' => $tours,
 			'tour' => $id,
 			'dates' => json_encode($dates),
-			'google_map_key' => GOOGLE_MAPS_API_V2_KEY,
+			'google_map_key' => GOOGLE_MAPS_API_KEY,
 		);
 
 		$data = array_merge($page_variables, $this->layout_variables);

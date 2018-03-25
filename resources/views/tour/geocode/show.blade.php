@@ -27,8 +27,8 @@
 <div class="col-md-8">
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour-geocode.edit', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
-		<li><a href="{{ route( 'admin.tour-geocode.delete', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
+		<li><a href="{{ route( 'tour-geocode.edit', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+		<li><a href="{{ route( 'tour-geocode.delete', array( 'id' => $geocode->geocode_id ) ) }}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
 	</ul>
 
     <div class="row">
@@ -99,7 +99,7 @@
 @stop
 
 @section('sidebar')
-<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_V3_CLIENT_KEY }}" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}" type="text/javascript"></script>
 <script type="text/javascript">
 	(function ($) {
 		$(function () {
@@ -118,7 +118,7 @@
 			});
 
 			$('#lookup-location').click(function () {
-				var url = '{{ route("admin.tour-geocode.lookup") }}';
+				var url = '{{ route("tour-geocode.lookup") }}';
 				var data = {
 					'geocode_location': $('#geocode_location').val(),
 					'geocode_address': $('#geocode_address').val(),

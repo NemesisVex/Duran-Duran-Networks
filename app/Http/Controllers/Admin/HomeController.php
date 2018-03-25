@@ -1,8 +1,8 @@
 <?php
 
-namespace DuranDuranNetworks\App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
-use DuranDuranNetworks\App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller {

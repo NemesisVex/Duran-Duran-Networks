@@ -29,7 +29,7 @@
 		Are you sure you want to do this?
 	</p>
 
-	{!! Form::model( $geocode, array( 'route' => array( 'admin.tour-geocode.destroy', $geocode->geocode_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'delete' ) ) !!}
+	{!! Form::model( $geocode, array( 'route' => array( 'tour-geocode.destroy', $geocode->geocode_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'delete' ) ) !!}
 
 	<div class="form-group">
 		<div class="col-sm-12">

@@ -23,7 +23,7 @@
 
 @section('content')
 <div class="col-md-8">
-	{!! Form::model( $tour, array( 'route' => array('admin.tour.update', $tour->tour_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'put' ) ) !!}
+	{!! Form::model( $tour, array( 'route' => array('tour.update', $tour->tour_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'put' ) ) !!}
 	@parent
 	{!! Form::close() !!}
 </div>

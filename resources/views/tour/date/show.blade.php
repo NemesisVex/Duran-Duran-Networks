@@ -29,8 +29,8 @@
 <div class="col-md-8">
 
 	<ul class="list-inline">
-		<li><a href="{{ route( 'admin.tour-date.edit', array( 'id' => $date->date_id ) ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
-		<li><a href="{{ route( 'admin.tour-date.delete', array( 'id' => $date->date_id ) ) }}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
+		<li><a href="{{ route( 'tour-date.edit', array( 'id' => $date->date_id ) ) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+		<li><a href="{{ route( 'tour-date.delete', array( 'id' => $date->date_id ) ) }}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
 	</ul>
 
     <div class="row">
@@ -47,7 +47,7 @@
             <label>Location:</label>
         </div>
         <div class="col-xs-10">
-            <a href="{{ route( 'admin.tour-geocode.show', array( $date->geocode->geocode_id ) ) }}">{{ $date->geocode->geocode_location }}</a>,
+            <a href="{{ route( 'tour-geocode.show', array( $date->geocode->geocode_id ) ) }}">{{ $date->geocode->geocode_location }}</a>,
             @if (!empty($date->geocode->geocode_city))
                 {{ $date->geocode->geocode_city }},
             @endif
@@ -65,7 +65,7 @@
             <label>Location:</label>
         </div>
         <div class="col-xs-10">
-            <a href="{{ route( 'admin.tour-geocode.show', array( $date->geocode->geocode_id ) ) }}">{{ $date->geocode->geocode_location }}</a>,
+            <a href="{{ route( 'tour-geocode.show', array( $date->geocode->geocode_id ) ) }}">{{ $date->geocode->geocode_location }}</a>,
             @if (!empty($date->geocode->geocode_city))
                 {{ $date->geocode->geocode_city }},
             @endif
