@@ -1,10 +1,10 @@
 <?php
 
-namespace DuranDuranNetworks\App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
-use DuranDuranNetworks\App\Http\Controllers\Controller;
-use DuranDuranNetworks\App\Models\Tour;
-use DuranDuranNetworks\App\Models\TourDate;
+use App\Http\Controllers\Controller;
+use App\Models\Tour;
+use App\Models\TourDate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
@@ -72,9 +72,9 @@ class TourController extends Controller {
 		$result = $id->save();
 
 		if ($result !== false) {
-			return Redirect::route('admin.tour.show', array('id' => $id->tour_id))->with('message', 'Your changes were saved.');
+			return Redirect::route('tour.show', array('id' => $id->tour_id))->with('message', 'Your changes were saved.');
 		} else {
-			return Redirect::route('admin.tour.index')->with('error', 'Your changes were not saved.');
+			return Redirect::route('tour.index')->with('error', 'Your changes were not saved.');
 		}
 	}
 
@@ -135,9 +135,9 @@ class TourController extends Controller {
 		$result = $id->save();
 
 		if ($result !== false) {
-			return Redirect::route('admin.tour.show', array('id' => $id->tour_id))->with('message', 'Your changes were saved.');
+			return Redirect::route('tour.show', array('id' => $id->tour_id))->with('message', 'Your changes were saved.');
 		} else {
-			return Redirect::route('admin.tour.index')->with('error', 'Your changes were not saved.');
+			return Redirect::route('tour.index')->with('error', 'Your changes were not saved.');
 		}
 	}
 
@@ -167,9 +167,9 @@ class TourController extends Controller {
 		if ($confirm === true) {
 			// Remove tour.
 			$id->delete();
-			return Redirect::route('admin.tour.index')->with('message', $tour_name . ' was deleted.');
+			return Redirect::route('tour.index')->with('message', $tour_name . ' was deleted.');
 		} else {
-			return Redirect::route('admin.tour.show', array('id' => $id->tour_id))->with('error', $tour_name . ' was not deleted.');
+			return Redirect::route('tour.show', array('id' => $id->tour_id))->with('error', $tour_name . ' was not deleted.');
 		}
 	}
 

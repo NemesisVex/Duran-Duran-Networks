@@ -29,7 +29,7 @@
 		Are you sure you want to do this?
 	</p>
 
-	{!! Form::model( $tour, array( 'route' => array( 'admin.tour.destroy', $tour->tour_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'delete' ) ) !!}
+	{!! Form::model( $tour, array( 'route' => array( 'tour.destroy', $tour->tour_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'delete' ) ) !!}
 
 	<div class="form-group">
 		<div class="col-sm-12">

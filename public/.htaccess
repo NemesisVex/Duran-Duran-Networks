@@ -43,7 +43,7 @@ Satisfy any
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
-RewriteRule ^(tour|album|admin|auth)(|\/) /lv.php [L]
+RewriteRule ^(tour|album|admin|login|logout)(|\/) /lv.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]

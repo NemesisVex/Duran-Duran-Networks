@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="col-md-8">
-	{!! Form::model( $geocode, array( 'route' => 'admin.tour-geocode.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post' ) ) !!}
+	{!! Form::model( $geocode, array( 'route' => 'tour-geocode.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post' ) ) !!}
 	@parent
 	{!! Form::close() !!}
 </div>

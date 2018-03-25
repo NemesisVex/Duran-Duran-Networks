@@ -33,7 +33,7 @@
 		Are you sure you want to do this?
 	</p>
 
-	{!! Form::model( $date, array( 'route' => array( 'admin.tour-date.destroy', $date->date_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'delete' ) ) !!}
+	{!! Form::model( $date, array( 'route' => array( 'tour-date.destroy', $date->date_id), 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'delete' ) ) !!}
 
 	<div class="form-group">
 		<div class="col-sm-12">
