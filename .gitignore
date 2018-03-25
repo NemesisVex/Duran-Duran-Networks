@@ -10,5 +10,6 @@ node_modules
 Homestead.json
 Homestead.yaml
 npm-debug.log
+vendor.tar.gz
 yarn-error.log
 .env

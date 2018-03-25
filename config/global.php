@@ -8,6 +8,7 @@
 
 define('VIGILANTMEDIA_CDN_BASE_URI', env('VIGILANTMEDIA_CDN_BASE_URI', '//cdn.vigilantmedia.com'));
 define('GOOGLE_MAPS_API_KEY', env('GOOGLE_MAPS_API_KEY'));
+define('GOOGLE_MAPS_API_SERVER_KEY', env('GOOGLE_MAPS_API_SERVER_KEY'));
 
 return [
 	'url_base' => array(
