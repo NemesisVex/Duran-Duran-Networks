@@ -178,7 +178,6 @@ class TourGeocodeController extends Controller {
 	}
 
 	public function lookup() {
-
 		$input = Input::all();
 		$country_id = $input['geocode_country'];
 
@@ -210,11 +209,12 @@ class TourGeocodeController extends Controller {
 
 		$address = urlencode( implode(', ', $location) );
 
-		$url = $this->google_maps_api_url_base . '?address=' . $address . '&key=' . GOOGLE_MAPS_API_KEY;
+		$url = $this->google_maps_api_url_base . '?address=' . $address . '&key=' . GOOGLE_MAPS_API_SERVER_KEY;
 
 		$client = new Client();
 		$response = $client->get($url);
 
 		echo $response->getBody() . "\n";
+		die();
 	}
 }
