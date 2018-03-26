@@ -1,11 +1,11 @@
 <?php
 
-namespace DuranDuranNetworks\App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
-use DuranDuranNetworks\App\Http\Controllers\Controller;
-use DuranDuranNetworks\App\Models\Tour;
-use DuranDuranNetworks\App\Models\TourDate;
-use DuranDuranNetworks\App\Models\TourGeocode;
+use App\Http\Controllers\Controller;
+use App\Models\Tour;
+use App\Models\TourDate;
+use App\Models\TourGeocode;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -57,7 +57,7 @@ class TourDateController extends Controller  {
 			$date->date_tour_id = $tour_id;
 		}
 
-		$tours = Tour::lists('tour_name', 'tour_id');
+		$tours = Tour::pluck('tour_name', 'tour_id');
 		$tours = array(0 => '&nbsp;') + $tours->all();
 
 		$geocodes = $this->build_location_options();
@@ -91,9 +91,9 @@ class TourDateController extends Controller  {
 		$result = $id->save();
 
 		if ($result !== false) {
-			return Redirect::route('admin.tour-date.show', array('id' => $id->date_id))->with('message', 'Your changes were saved.');
+			return Redirect::route('tour-date.show', array('id' => $id->date_id))->with('message', 'Your changes were saved.');
 		} else {
-			return Redirect::route('admin.tour.show', array('id' => $id->date_id))->with('error', 'Your changes were not saved.');
+			return Redirect::route('tour.show', array('id' => $id->date_id))->with('error', 'Your changes were not saved.');
 		}
 	}
 
@@ -124,7 +124,7 @@ class TourDateController extends Controller  {
 	 */
 	public function edit($id)
 	{
-		$tours = Tour::lists('tour_name', 'tour_id');
+		$tours = Tour::pluck('tour_name', 'tour_id');
 		$tours = array(0 => '&nbsp;') + $tours->all();
 
 		$geocodes = $this->build_location_options();
@@ -157,9 +157,9 @@ class TourDateController extends Controller  {
 		$result = $id->save();
 
 		if ($result !== false) {
-			return Redirect::route('admin.tour-date.show', array('id' => $id->date_id))->with('message', 'Your changes were saved.');
+			return Redirect::route('tour-date.show', array('id' => $id->date_id))->with('message', 'Your changes were saved.');
 		} else {
-			return Redirect::route('admin.tour.show', array('id' => $id->date_id))->with('error', 'Your changes were not saved.');
+			return Redirect::route('tour.show', array('id' => $id->date_id))->with('error', 'Your changes were not saved.');
 		}
 	}
 
@@ -189,15 +189,15 @@ class TourDateController extends Controller  {
 		if ($confirm === true) {
 			// Remove tour.
 			$id->delete();
-			return Redirect::route('admin.tour.show', array('id' => $tour_id))->with('message', 'The tour date was deleted.');
+			return Redirect::route('tour.show', array('id' => $tour_id))->with('message', 'The tour date was deleted.');
 		} else {
-			return Redirect::route('admin.tour-date.show', array('id' => $id->date_id))->with('error', 'The tour date was not deleted.');
+			return Redirect::route('tour-date.show', array('id' => $id->date_id))->with('error', 'The tour date was not deleted.');
 		}
 	}
 
 	private function build_location_options() {
 		$geocodes = TourGeocode::orderBy('geocode_location')->get();
-		$geocode_list = $geocodes->lists('geocode_location', 'geocode_id');
+		$geocode_list = $geocodes->pluck('geocode_location', 'geocode_id');
 
 		foreach ($geocode_list as $g => $geocode_list_item) {
 			$location = array();

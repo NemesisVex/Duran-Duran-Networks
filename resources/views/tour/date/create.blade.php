@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="col-md-8">
-	{!! Form::model( $date, array( 'route' => 'admin.tour-date.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post' ) ) !!}
+	{!! Form::model( $date, array( 'route' => 'tour-date.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post' ) ) !!}
 	@parent
 	{!! Form::close() !!}
 </div>

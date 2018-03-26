@@ -36,12 +36,21 @@
 				<div class="collapse navbar-collapse" id="main-nav">
 					<ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
-						@if ( Auth::check() )
-                        <li><a href="{{ route('admin.home') }}">Admin</a></li>
-						<li><a href="{{ route('auth.logout') }}">Logout</a></li>
+						@guest
+							<li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
 						@else
-						<li><a href="{{ route('auth.login') }}">Login</a></li>
-						@endif
+							<li>
+								<a class="dropdown-item" href="{{ route('logout') }}"
+								   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+									{{ __('Logout') }}
+								</a>
+
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									@csrf
+								</form>
+							</li>
+						@endguest
 					</ul>
 				</div>
 			</div>

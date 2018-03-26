@@ -1,4 +1,15 @@
-/public/wp
-/vendor
 node_modules
+/public/hot
+/public/storage
+/public/wp
+/storage/*.key
+/vendor
+/.idea
+/.vscode
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+vendor.tar.gz
+yarn-error.log
 .env

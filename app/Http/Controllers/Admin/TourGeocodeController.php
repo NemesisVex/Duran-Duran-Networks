@@ -1,10 +1,10 @@
 <?php
 
-namespace DuranDuranNetworks\App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
-use DuranDuranNetworks\App\Http\Controllers\Controller;
-use DuranDuranNetworks\App\Models\TourGeocode;
-use DuranDuranNetworks\App\Models\TourCountry;
+use App\Http\Controllers\Controller;
+use App\Models\TourGeocode;
+use App\Models\TourCountry;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -45,7 +45,7 @@ class TourGeocodeController extends Controller {
 	{
 		$geocode = new TourGeocode;
 
-		$countries = TourCountry::orderBy('country_name')->lists('country_name', 'country_id');
+		$countries = TourCountry::orderBy('country_name')->pluck('country_name', 'country_id');
 		$countries = array(0 => '&nbsp;') + $countries->toArray();
 
 		$page_variables = array(
@@ -76,9 +76,9 @@ class TourGeocodeController extends Controller {
 		$result = $id->save();
 
 		if ($result !== false) {
-			return Redirect::route('admin.tour-geocode.show', array('id' => $id->geocode_id))->with('message', 'Your changes were saved.');
+			return Redirect::route('tour-geocode.show', array('id' => $id->geocode_id))->with('message', 'Your changes were saved.');
 		} else {
-			return Redirect::route('admin.tour-geocode.index')->with('error', 'Your changes were not saved.');
+			return Redirect::route('tour-geocode.index')->with('error', 'Your changes were not saved.');
 		}
 	}
 
@@ -109,7 +109,7 @@ class TourGeocodeController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$countries = TourCountry::orderBy('country_name')->lists('country_name', 'country_id');
+		$countries = TourCountry::orderBy('country_name')->pluck('country_name', 'country_id');
 		$countries = array(0 => '&nbsp;') + $countries->toArray();
 
 		$page_variables = array(
@@ -139,9 +139,9 @@ class TourGeocodeController extends Controller {
 		$result = $id->save();
 
 		if ($result !== false) {
-			return Redirect::route('admin.tour-geocode.show', array('id' => $id->geocode_id))->with('message', 'Your changes were saved.');
+			return Redirect::route('tour-geocode.show', array('id' => $id->geocode_id))->with('message', 'Your changes were saved.');
 		} else {
-			return Redirect::route('admin.tour-geocode.index')->with('error', 'Your changes were not saved.');
+			return Redirect::route('tour-geocode.index')->with('error', 'Your changes were not saved.');
 		}
 	}
 
@@ -171,14 +171,13 @@ class TourGeocodeController extends Controller {
 		if ($confirm === true) {
 			// Remove tour.
 			$id->delete();
-			return Redirect::route('admin.tour-geocode.index')->with('message', $geocode_location . ' was deleted.');
+			return Redirect::route('tour-geocode.index')->with('message', $geocode_location . ' was deleted.');
 		} else {
-			return Redirect::route('admin.tour-geocode.show', array('id' => $id->geocode_id))->with('error', $geocode_location . ' was not deleted.');
+			return Redirect::route('tour-geocode.show', array('id' => $id->geocode_id))->with('error', $geocode_location . ' was not deleted.');
 		}
 	}
 
 	public function lookup() {
-
 		$input = Input::all();
 		$country_id = $input['geocode_country'];
 
@@ -210,11 +209,12 @@ class TourGeocodeController extends Controller {
 
 		$address = urlencode( implode(', ', $location) );
 
-		$url = $this->google_maps_api_url_base . '?address=' . $address . '&key=' . GOOGLE_MAPS_API_V3_SERVER_KEY;
+		$url = $this->google_maps_api_url_base . '?address=' . $address . '&key=' . GOOGLE_MAPS_API_SERVER_KEY;
 
 		$client = new Client();
 		$response = $client->get($url);
 
 		echo $response->getBody() . "\n";
+		die();
 	}
 }

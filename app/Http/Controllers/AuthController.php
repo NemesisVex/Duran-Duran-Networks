@@ -7,7 +7,7 @@
  */
 
 
-namespace DuranDuranNetworks\App\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;

@@ -1,6 +1,6 @@
 <?php
 
-namespace DuranDuranNetworks\App\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
